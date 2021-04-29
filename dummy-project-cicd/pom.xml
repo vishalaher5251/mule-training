@@ -11,6 +11,8 @@
 	<name>dummy-project-cicd</name>
 
     <properties>
+    	<sonar.sources>src/main/mule</sonar.sources>
+		<sonar.tests/>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -49,6 +51,11 @@
             <version>1.2.0</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+        <dependency>
+ 			<groupId>org.sonarsource.scanner.maven</groupId>
+ 			<artifactId>sonar-maven-plugin</artifactId>
+ 			<version>3.6.1.1688</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
