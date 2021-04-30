@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="dummy-project-cicd-test-suite.xml" />
+	<munit:test name="dummy-project-cicd-test-suite-dummy-project-cicdFlowTest" doc:id="547c9324-f3fd-4527-9609-53060601a71a" description="Test">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="b4b91e0d-196e-4818-a80b-f427ca783545" />
+			<flow-ref doc:name="Flow-ref to dummy-project-cicdFlow" doc:id="878f1e4a-b609-41f2-8919-f122e07d2cd0" name="dummy-project-cicdFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="85f16ec5-2e09-4ce0-a691-a38033486332" actual="#[payload]" expected='#["This is dummy project, Nothing here"]' message='#["Payload not matching to expected"]'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-project-cicd-test-suite-dummy-project-cicdFlowTest1" doc:id="c768a807-a199-4e5f-bf57-470fb1e4148c" description="Test">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="f14fb533-aaac-496e-8cd3-0c8f60cd706f" />
+			<flow-ref doc:name="Flow-ref to dummy-project-cicdFlow" doc:id="26d487b8-31f9-467f-9e5b-1a6e4522fb9e" name="dummy-project-cicdFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="09078d24-e8d3-4b98-a58f-2ad56a167031" message="Payload cannot be Null" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-project-cicd-test-suite-dummy-project-cicdFlowTest2" doc:id="e83ece3e-65f2-4671-b474-f80e6ea92273" description="Test">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="45023267-31f1-401a-8021-4f241087edc7" />
+			<flow-ref doc:name="Flow-ref to dummy-project-cicdFlow" doc:id="55435d13-17e9-400e-93d9-55242497c506" name="dummy-project-cicdFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="e9bc7c6b-4498-496d-9d21-b4e6b00c6f21" expression="#[payload]" is="#[MunitTools::startsWith('This')]" message="#[&quot;Payload not starting with 'This'&quot;]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-project-cicd-test-suite-dummy-project-cicdFlowTest3" doc:id="ab53fe67-19e6-48aa-984f-2543438ede26" description="Test" ignore="true">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="884ee6fb-b336-4f41-9799-45eabdedd4e6" />
+			<flow-ref doc:name="Flow-ref to dummy-project-cicdFlow" doc:id="d8d3a088-fffb-4dac-b8ca-fd8288870435" name="dummy-project-cicdFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="c54b88fa-0403-4b57-9759-dbc616272e8b" message="#[&quot;Payload not ending with 'Thank You'&quot;]" expression="#[payload]" is="#[MunitTools::endsWith('Thank You')]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-project-cicd-test-suite-dummy-project-cicdFlow1Test" doc:id="a09837ec-ad5a-481d-9943-035de866c4d3" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="2dc0cf41-c4a6-427b-9cdf-cc6c354da5b2" >
+				<munit:payload value='{&#10;	"id": 1,&#10;	"name": "Vishal Aher"&#10;}' mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to dummy-project-cicdFlow1" doc:id="6bbd9d6f-663d-41b2-80ea-7033e8655cd4" name="dummy-project-cicdFlow1"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="3d150400-f0d1-49df-b8f2-ce93c9fa4b32" actual="#[payload]" expected='#[{&#10;	message: {&#10;		id: 1,&#10;		name: "Vishal Aher"&#10;	}&#10;}]' message="Please send valid info"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
